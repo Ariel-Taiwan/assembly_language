@@ -1,0 +1,24 @@
+程式內容：
+	MOV r1,#10		/*r1=10*/
+	MOV r2,#20		/*r2=20*/
+	MOV r3,#12		/*r3=12*/
+	MOV r1,r1,LSL #1	/*r1=(10*2)-邏輯左移1個乘以2*/
+	MOV r2,r2,LSL #2	/*r2=(10*4)-邏輯左移2個乘以4*/
+	MOV r3,r3,LSL #3	/*r3=(10*8)-邏輯左移3個乘以8*/
+	ADD r0,r1,r2		/*r0=r1+r2*/
+	ADD r0,r0,r3		/*r0=r0+r3*/
+	NOP
+	
+	寫入三個十進位數字後，因為分別乘2.4.8，所以用邏輯位移往左邊移1.2.3格（暫存器中是二進位位移1格就是2倍），最後在全部加起來。
+	
+如何編譯程式：
+	用armtool/bin裡的arm-none-eabi-gcc
+	指令執行：./arm-none-eabi-gcc -g hw2.s -o hw2.exe
+	
+程式的執行環境：
+	我是在ubuntu執行hw2.s的
+	
+如何執行你的程式：
+	指令：./arm-none-eabi-insight
+	file open hw2.exe，開啟暫存器（view register）。
+	用單步執行（N）一步一步看有沒有執行成我想要的樣子，最後答案是196沒錯。
