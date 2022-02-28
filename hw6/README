@@ -1,0 +1,21 @@
+作業六學習目標：學會用semihosting及sprintf。
+
+程式的內容：
+排序完之後每一個的整數，用loop把他們轉成字串後，用strcat相接起來，最後再用semihosting寫檔案，寫入demo.txt檔
+
+呼叫了C的哪些function?
+sprintf：把整數轉換成字串（結果輸出為r0），strcat：把兩個字串接成一個字串（結果輸出為r0），strlen：算此字串有多長（結果輸出為r0）
+
+How to compile my program:
+指令只需要下： make
+因為已設定好軟連結：sudo ln -s /home/shiwulo/downloads/arm-newtool/arm-cross-toolchain-linux-64/bin/arm-none-eabi-gcc  arm-none-eabi-gcc 及 sudo ln -s /home/shiwulo/downloads/arm-newtool/arm-cross-toolchain-linux-64/bin/arm-none-eabi-insight  arm-none-eabi-insight
+也可以直接打開insight觀測暫存器與記憶體用指令： ./arm-none-eabi-insight
+指令下make clean可以清除所有.exe檔
+
+demo.txt最後輸出結果：
+1 3 6 9 10 20 40 
+過程中用了strcat及strlen去幫助字串串起來能一次swi AngelSWI，因為如果不先串起來，資料會有覆蓋掉之前寫入資料的問題。
+
+這次用PATH:
+之前都是把寫好的檔案用armtool/bin裡的arm-none-eabi-gcc編譯，指令下./arm-none-eabi-gcc -g hw6_test.s numsort.s -o hw6.exe，這次發現可以設定PATH，以後就不用再換資料夾，我用的是方法B軟連結，設定成功。
+試過方法A，在bashrc裡export PATH=$PATH:/home/shiwulo/downloads/arm-newtool/arm-cross-toolchain-linux-64/bin（我的gcc執行檔資料夾在這裡，因為系上必修作業系統是羅習五教授的課，所以就一起用他給我們的作業系統）沒有成功。
